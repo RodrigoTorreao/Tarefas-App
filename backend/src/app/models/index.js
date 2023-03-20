@@ -2,7 +2,7 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable global-require */
 
-import Sequelize, { DataTypes} from 'sequelize';
+import Sequelize, { DataTypes } from 'sequelize';
 
 import config from '../../config/database.js';
 
@@ -14,6 +14,11 @@ const db = {
     email: DataTypes.STRING,
     password: DataTypes.VIRTUAL,
     password_hash: DataTypes.STRING,
+  }),
+  Tasks: sequelize.define('Tasks', {
+    user_id: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    task: DataTypes.STRING,
   }),
 
 };

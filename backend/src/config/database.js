@@ -1,14 +1,15 @@
-// eslint-disable-next-line import/no-import-module-exports
 import { config } from 'dotenv';
 
-config();
+config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+});
 
 export default {
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  dialect: 'postgres',
+  dialect: process.env.DB_DIALECT || 'postgres',
   storage: './__tests__/database.sqlite',
   operatorsAliases: false,
   logging: false,
