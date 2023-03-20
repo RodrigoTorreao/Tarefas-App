@@ -3,6 +3,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import userRouter from './app/controllers/user.js';
+import errorHandler from './app/utils/errorHandler.js';
 
 config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
@@ -11,12 +12,13 @@ config({
 class App {
   constructor() {
     this.express = express();
-    this.middlewares();
     this.routes();
+    this.middlewares();
   }
 
   middlewares() {
     this.express.use(express.json());
+    this.express.use(errorHandler);
   }
 
   routes() {

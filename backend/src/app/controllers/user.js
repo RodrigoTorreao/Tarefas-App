@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import userService from '../services/userService.js';
-
+import CustomError from '../utils/customError.js';
 const router = Router();
 
 router.post('/create', async (req, res, prox) => {
@@ -12,12 +12,12 @@ router.post('/create', async (req, res, prox) => {
   }
 });
 
-router.post('/login', async (req, res, prox) => {
+router.post('/login', async (req, res, next) => {
   try {
     const token = await userService.login(req.body.user);
     res.status(200).json(newUser);
   } catch (err) {
-    prox(err);
+    next(err);
   }
 });
 
