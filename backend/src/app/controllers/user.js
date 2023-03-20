@@ -2,7 +2,6 @@
 import { Router } from 'express';
 import userService from '../services/userService.js';
 import { authenticateToken } from '../utils/token.js';
-import Tasks from '../models/Tasks.js';
 
 const router = Router();
 

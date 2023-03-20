@@ -4,6 +4,7 @@ import express from 'express';
 import { config } from 'dotenv';
 import bodyParser from 'body-parser';
 import userRouter from './app/controllers/user.js';
+import taskRouter from './app/controllers/task.js';
 import errorHandler from './app/utils/errorHandler.js';
 
 config({
@@ -25,6 +26,7 @@ class App {
 
   routes() {
     this.express.use('/user', userRouter);
+    this.express.use('/task', taskRouter);
   }
 }
 const app = new App().express;
