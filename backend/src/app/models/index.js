@@ -2,7 +2,7 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable global-require */
 
-import Sequelize, { DataTypes} from 'sequelize';
+import Sequelize, { DataTypes } from 'sequelize';
 
 import config from '../../config/database.js';
 
