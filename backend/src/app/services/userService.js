@@ -25,7 +25,7 @@ const userService = {
       email: user.email,
       password_hash,
     });
-    return newUser;
+    return newUser.dataValues;
   },
 
   login: async (data) => {
@@ -56,7 +56,7 @@ const userService = {
       throw new CustomError(404, 'user not found');
     }
     delete user.dataValues.password_hash;
-    return user;
+    return user.dataValues;
   },
 };
 

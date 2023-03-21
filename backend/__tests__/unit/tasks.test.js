@@ -28,3 +28,19 @@ describe('Task read', () => {
     expect(tasks.length).toBe(2);
   });
 });
+
+describe('Task update', () => {
+  it('Should find and update the user task', async () => {
+    const task = await taskService.create({
+      name: 'update-task',
+      task: 'update-task',
+      id: 23,
+    });
+    await taskService.updateTask({
+      name: 'updated-name',
+      task: 'updated-task',
+      id: task.user_id,
+      taskId: task.id,
+    });
+  });
+});
