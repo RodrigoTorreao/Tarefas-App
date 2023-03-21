@@ -26,7 +26,21 @@ describe('Tasks', () => {
         task: 'testTask',
 
       });
-    console.log(response);
     expect(response.status).toBe(201);
+  });
+
+  it('Should read a task', async () => {
+    const token = await supertest(app)
+      .post('/user/login')
+      .send({
+        user: {
+          email: 'createTaskTest',
+          password: '123123',
+        },
+      });
+    const response = await supertest(app)
+      .get('/task/get-task')
+      .set('Authorization', `Bearer ${token.body}`);
+    expect(response.status).toBe(200);
   });
 });

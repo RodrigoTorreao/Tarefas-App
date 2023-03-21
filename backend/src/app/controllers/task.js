@@ -14,4 +14,13 @@ router.post('/create', authenticateToken, async (req, res, prox) => {
   }
 });
 
+router.get('/get-task', authenticateToken, async (req, res, prox) => {
+  try {
+    const tasks = await taskService.getTask(req.user);
+    res.status(200).json(tasks);
+  } catch (err) {
+    prox(err);
+  }
+});
+
 export default router;
