@@ -7,7 +7,7 @@ import { generateAccessToken } from '../utils/token.js';
 const userService = {
   create: async (user) => {
     if (!user.email || !user.password || !user.name) {
-      throw new Error('missing information');
+      throw new CustomError(400, 'missing information');
     }
     const isRepeated = await User.findOne({
       where: {
@@ -15,7 +15,7 @@ const userService = {
       },
     });
     if (isRepeated) {
-      throw new Error('user already exists');
+      throw new CustomError(400, 'user already existis');
     }
 
     const password_hash = await bcrypt.hash(user.password, 8);
@@ -25,7 +25,7 @@ const userService = {
       email: user.email,
       password_hash,
     });
-    return newUser;
+    return newUser.dataValues;
   },
 
   login: async (data) => {
@@ -56,7 +56,7 @@ const userService = {
       throw new CustomError(404, 'user not found');
     }
     delete user.dataValues.password_hash;
-    return user;
+    return user.dataValues;
   },
 };
 
