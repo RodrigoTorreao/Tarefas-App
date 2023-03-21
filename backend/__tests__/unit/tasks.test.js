@@ -44,3 +44,17 @@ describe('Task update', () => {
     });
   });
 });
+
+describe('Task delete', () => {
+  it('Should find and delete the user task', async () => {
+    const task = await taskService.create({
+      name: 'delete-task',
+      task: 'delete-task',
+      id: 23,
+    });
+    await taskService.deleTask({
+      id: task.user_id,
+      taskId: task.id,
+    });
+  });
+});

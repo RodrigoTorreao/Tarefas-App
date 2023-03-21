@@ -44,6 +44,16 @@ const taskService = {
     return updatedTask.dataValues;
   },
 
+  deleTask: async (data) => {
+    await Tasks.destroy(
+      {
+        where: {
+          user_id: data.id,
+          id: data.taskId,
+        },
+      },
+    );
+  },
 };
 
 export default taskService;

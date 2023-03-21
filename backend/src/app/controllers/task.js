@@ -32,4 +32,13 @@ router.put('/update-task', authenticateToken, async (req, res, prox) => {
   }
 });
 
+router.delete('/update-task', authenticateToken, async (req, res, prox) => {
+  try {
+    const tasks = await taskService.updateTask({ id: req.user.id, ...req.body });
+    res.status(200).json(tasks);
+  } catch (err) {
+    prox(err);
+  }
+});
+
 export default router;

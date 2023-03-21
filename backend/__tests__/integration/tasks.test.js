@@ -58,6 +58,7 @@ describe('Tasks', () => {
           password: '123123',
         },
       });
+
     const task = await supertest(app)
       .post('/task/create')
       .set('Authorization', `Bearer ${token.body}`)
@@ -67,7 +68,6 @@ describe('Tasks', () => {
 
       });
 
-    console.log(task.body);
     const updateTask = await supertest(app)
       .put('/task/update-task')
       .set('Authorization', `Bearer ${token.body}`)
@@ -77,6 +77,6 @@ describe('Tasks', () => {
         task: 'UpdatedTask',
 
       });
-    console.log(updateTask.body);
+    expect(updateTask.status).toBe(200);
   });
 });
