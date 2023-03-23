@@ -1,0 +1,33 @@
+.taskContainer{
+  border-radius: 20px;
+  height: 200px;
+  width: 300px;
+  background-color: #FCF6BD;
+  display: flex;
+  align-items: flex-start ;
+  padding: 20px;
+  flex-direction: column;
+}
+.taskTitle{
+  font-size: 30px;
+}
+.taskDescription{
+ width: 100%;
+ height: 100%;
+ padding: 10px;
+}
+.taskHeader{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.taskButtons{
+  background-color: transparent;
+  border: none;
+  align-content: center;
+}
+.taskSvgs{
+  height: 3vh;
+  align-self: center;
+}

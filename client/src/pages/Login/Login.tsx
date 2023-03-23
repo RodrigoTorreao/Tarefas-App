@@ -1,26 +1,51 @@
 import { TextField } from '@mui/material'
-import { useState } from 'react'
+import { useState, } from 'react'
+import { useDispatch } from 'react-redux'
 import './Login.scss'
 
 const LoginPage = () => {
-  const [name, setName] = useState('')
-  
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const onSubmit = () => {
+    dispatch(authenticate({
+      email,
+      password
+    }));
+  };
+
   return (
     <div className='container'>
       <div className='card'>
         <div>
-          <h1 style={{text-align: 'center'}}>Bem-Vindo</h1>
+          <h1 className='title'>Bem-Vindo</h1>
         </div>
         <div>
-          <div>
+          <div className='inputContainer'>
             <TextField
-              label='Nome'
+              label='Digite aqui seu email'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setName(event.target.value);
+                setEmail(event.target.value)
               }}
-              value={name}
+              value={email}
             />
+            <TextField
+              label='Digite aqui sua senha'
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setPassword(event.target.value)
+              }}
+              value={password}
+              type={'password'}
+            />
+            <a href='/register' style={{ alignSelf: 'flex-end', color: '#413543' } }>
+              Registrar
+            </a>
           </div>
+        </div>
+        <div style={ { alignSelf: 'center' } }>
+          <button className='inputButton' onClick={onSubmit}>
+            Entrar
+          </button>
         </div>
       </div>
     </div>
