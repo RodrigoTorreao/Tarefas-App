@@ -3,6 +3,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import userRouter from './app/controllers/user.js';
 import taskRouter from './app/controllers/task.js';
 import errorHandler from './app/utils/errorHandler.js';
@@ -14,6 +15,7 @@ config({
 class App {
   constructor() {
     this.express = express();
+    this.express.use(cors());
     this.middlewares();
     this.routes();
     this.express.use(errorHandler);

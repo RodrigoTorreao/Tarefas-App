@@ -32,9 +32,9 @@ router.put('/update-task', authenticateToken, async (req, res, prox) => {
   }
 });
 
-router.delete('/update-task', authenticateToken, async (req, res, prox) => {
+router.delete('/delete-task', authenticateToken, async (req, res, prox) => {
   try {
-    const tasks = await taskService.updateTask({ id: req.user.id, ...req.body });
+    const tasks = await taskService.deleteTask({ id: req.user.id, ...req.query });
     res.status(200).json(tasks);
   } catch (err) {
     prox(err);
