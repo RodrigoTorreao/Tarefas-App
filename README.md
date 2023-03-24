@@ -16,9 +16,9 @@ Cada frente **client** e **backend** também possuem suas READMEs próprias e su
 
 ## Stack utilizada
 
-**Front-end:** ReactTs, Redux, Sequelize, jsonwebtoken
+**Front-end:** ReactTs, Redux,
 
-**Back-end:** NodeJs, Express, Jest
+**Back-end:** NodeJs, Express, Jest, Sequelize, jsonwebtoken
 
 
 ## Documentação
