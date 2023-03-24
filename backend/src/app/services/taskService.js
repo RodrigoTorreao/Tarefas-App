@@ -44,7 +44,7 @@ const taskService = {
     return updatedTask.dataValues;
   },
 
-  deleTask: async (data) => {
+  deleteTask: async (data) => {
     await Tasks.destroy(
       {
         where: {

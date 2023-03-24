@@ -1,0 +1,30 @@
+.container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.title{
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 60px;
+  color: #413543;
+}
+.inputContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;  
+  margin-top: 70px;
+  margin-bottom: 70px;
+  padding: 0 5%;
+}
+.card {
+  display: flex;
+  align-self: center;
+  background-color: #FCF6BD;
+  min-height: 70vh;
+  min-width: 70vh;
+  border-radius: 20px;
+  flex-direction: column;
+}
