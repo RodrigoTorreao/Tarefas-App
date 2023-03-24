@@ -1,11 +1,10 @@
 # Informativos API
-
+O backend foi desenvolvido utilizando a técnica de Test-driven development (TDD)
 ### Requisitos
 - Node (˜18.0.0)
 - Postgress Server
 
 ### Técnologias
-
 - Sequelize
 - Express
 - jsonwebtoken
