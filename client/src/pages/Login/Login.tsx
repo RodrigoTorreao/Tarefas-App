@@ -1,18 +1,26 @@
 import { TextField } from '@mui/material'
-import { useState, } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, setLogin } from '../../redux/Auth/authSlice'
 import './Login.scss'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state)
 
-  const onSubmit = () => {
-    dispatch(authenticate({
+  const onSubmit = async () => {
+    dispatch(login(
       email,
-      password
-    }));
-  };
+      password,
+      (success) => {
+        if (success) {
+          window.location.pathname = '/tasks'
+        }
+      }
+    ))
+  }
 
   return (
     <div className='container'>

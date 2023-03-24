@@ -4,6 +4,8 @@ import edit from '../../assets/edit.svg'
 import TaskModal from '../TaskModal/TaskModal' 
 import { useState } from 'react'
 import { Modal } from '@mui/material'
+import { deleteTask } from '../../redux/Auth/authSlice'
+import { useDispatch } from 'react-redux'
 
 export interface ItaskItemProps {
   name: string
@@ -14,9 +16,17 @@ export interface ItaskItemProps {
 
 const TaskItem = (props: ItaskItemProps) => {
   const [open, setOpen] = useState(false)
+
+  const dispatch = useDispatch()
+
   const handleClose = () => {
     setOpen(false)
   }
+
+  const handleDelete = () => {
+    dispatch(deleteTask(props.id))
+  }
+
   return (
     <div className='taskContainer'>
       <Modal
@@ -24,7 +34,7 @@ const TaskItem = (props: ItaskItemProps) => {
         onClose={handleClose}
         BackdropProps={{ style: { backgroundColor: '#E7E7E7', opacity: 0.3 } }}
       >
-      <TaskModal option='create' description='opa'  />
+        <TaskModal option='edit' description={props.description} name={props.name} id={props.id} handleClose={ handleClose } />
       </Modal>
       <div className='taskHeader'>
         <div className='taskTitle'>
@@ -38,7 +48,7 @@ const TaskItem = (props: ItaskItemProps) => {
           >
             <img className='taskSvgs' src={edit}></img>
           </button>
-          <button className='taskButtons'>
+          <button className='taskButtons' onClick={handleDelete}>
             <img className='taskSvgs' src={trash}></img>
           </button>
         </div>

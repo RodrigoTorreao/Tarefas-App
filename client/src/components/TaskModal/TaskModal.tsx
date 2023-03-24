@@ -2,17 +2,33 @@ import { Modal, TextField } from '@mui/material'
 import './TaskModal.scss'
 import plus from '../../assets/plus.svg'
 import { useState } from 'react'
+import { createTask, updateTask } from '../../redux/Auth/authSlice'
+import { useDispatch } from 'react-redux'
 export interface ITaskModalProps {
   name?: string
   id?: number
   description?: string
   option: 'create' | 'edit'
+  handleClose: () => void
 
 }
 
 const TaskModal = (props: ITaskModalProps) => {
   const [name, setName] = useState(props.name ? props.name : '')
   const [description, setDescription] = useState(props.description ? props.description : '')
+
+  const dispatch = useDispatch()
+
+  const handleSubmit = () => {
+    if (props.option === 'edit') {
+      dispatch(updateTask(name, description, props.id))
+    }
+    if (props.option === 'create') {
+      dispatch(createTask(name, description))
+    }
+    props.handleClose()
+  }
+
   return (
     <>
         <div className='modal'>
@@ -31,9 +47,7 @@ const TaskModal = (props: ITaskModalProps) => {
               value={name}
             />
             <div>
-              <button className='taskButtons' onClick={() => {
-                console.log(name, description)
-              }}>
+              <button className='taskButtons' onClick={handleSubmit}>
                 <img className='taskSvgs' src={plus}></img>
               </button>
             </div>

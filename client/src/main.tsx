@@ -2,16 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles/index.scss'
-import authReducer from './redux'
-import { configureStore } from '@reduxjs/toolkit'
+import { store, persistor } from './redux'
 import { Provider } from 'react-redux'
-
-const store = configureStore({ reducer: authReducer })
-
+import { PersistGate } from 'redux-persist/integration/react';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 )

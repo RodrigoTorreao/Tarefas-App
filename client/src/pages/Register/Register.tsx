@@ -1,5 +1,7 @@
 import { TextField } from '@mui/material'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { register } from '../../redux/Auth/authSlice'
 import './Register.scss'
 
 const RegisterPage = () => {
@@ -7,6 +9,18 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [name, setName] = useState('')
+
+  const dispatch = useDispatch()
+
+  const handleSubmit = () => {
+    dispatch(register(name, email, password,
+      (success) => {
+        if (success) {
+          window.location.pathname = '/'
+        }
+      }
+    ))
+  }
 
   return (
     <div className='container'>
@@ -21,7 +35,7 @@ const RegisterPage = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setName(event.target.value)
               }}
-              value={email}
+              value={name}
             />
             <TextField
               label='Digite seu email'
@@ -31,6 +45,7 @@ const RegisterPage = () => {
               value={email}
             />
             <TextField
+              error={password != passwordConfirm }
               label='Digite sua senha'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setPassword(event.target.value)
@@ -40,10 +55,11 @@ const RegisterPage = () => {
             />
             <TextField
               label='Confirme sua senha'
+              error={password != passwordConfirm}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setPassword(event.target.value)
+                setPasswordConfirm(event.target.value)
               }}
-              value={password}
+              value={passwordConfirm}
               type={'password'}
             />
             <a href='/' style={{ alignSelf: 'flex-end', color: '#413543' }}>
@@ -52,7 +68,7 @@ const RegisterPage = () => {
           </div>
         </div>
         <div style={{ alignSelf: 'center' }}>
-          <button className='inputButton'>
+          <button className='inputButton' onClick={handleSubmit}>
             Registrar
           </button>
         </div>
